@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 <b>#{name}</b>
+
+  button(id="buzz-button", class="big-button") Buzz!
+  b
+    p(id="output")
+  script(type="text/javascript").
+    var name = "#{name}";
+  script(type="text/javascript", src="/js/play.js")

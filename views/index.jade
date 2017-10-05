@@ -1,0 +1,11 @@
+﻿extends layout
+
+block content
+  h1 Buzzer
+  h2 Entre ton prénom pour commencer.
+  form(method="get", action="/play")
+    h2
+      label(for="name-button") 
+      input(type="text", name="name", id="name-button")
+    h2
+      input(type="submit", value="Start")

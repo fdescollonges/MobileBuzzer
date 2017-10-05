@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h2 Le plus rapide : 
+  h1(id="name")
+  button(id="clear-buzzes") Question suivante
+  h2 Ordre de réponse :
+  ol(id="buzzers")
+  
+
+  script(type="text/javascript", src="/socket.io/socket.io.js")
+  script(type="text/javascript", src="/js/display.js")
