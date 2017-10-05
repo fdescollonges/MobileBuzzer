@@ -6,13 +6,16 @@ var _s = require('underscore.string');
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
+var password;
 
 // get the admin password
 if (process.argv.length != 3) {
     process.stderr.write('Exactly one argument was expected, which is the admin password.\n');
-    process.exit(1);
+    password = process.env.GAME_PASSWORD;
+} else {
+    password = process.argv[2];
 }
-var password = process.argv[2];
+
 var admin_token = Math.random() + '.' + Math.random() + '.' + Math.random() + '.' + Math.random();
 
 // all environments
