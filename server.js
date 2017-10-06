@@ -10,8 +10,11 @@ var password;
 
 // get the admin password
 if (process.argv.length != 3) {
-    process.stderr.write('Exactly one argument was expected, which is the admin password.\n');
-    password = process.env.GAME_PASSWORD;
+    if (typeof process.env.GAME_PASSWORD === 'undefined' || process.env.GAME_PASSWORD == null) {
+        process.stderr.write('Info - GAME_PASSWORD environment variable must be set or a password must be passed as parameter at startup \n');
+    } else {
+        password = process.env.GAME_PASSWORD;
+    }
 } else {
     password = process.argv[2];
 }
