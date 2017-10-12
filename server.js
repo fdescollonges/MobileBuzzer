@@ -25,7 +25,7 @@ var callbackdb = function(err, data) {
     }
 }
 
-var instertPlayer = function(name, cb) {
+var insertPlayer = function(name, cb) {
     mobilebuzzerbd.insert({ "_in": name, "score": 0, "buzz": 0 }, cb);
 }
 
