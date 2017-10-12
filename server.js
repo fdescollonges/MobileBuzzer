@@ -1,4 +1,5 @@
 // load dependencies
+var Cloudant = require('cloudant');
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -7,6 +8,14 @@ var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 var password;
+
+var me = 'd601f780-c71f-485e-97ad-b2034aa48ae1-bluemix'; // Set this to your own account
+var password = process.env.cloudant_password;
+var cloudant = Cloudant({ account: me, password: password });
+cloudant.db.list(function(err, allDbs) {
+    console.log('All my databases: %s', allDbs.join(', '))
+});
+
 
 // get the admin password
 if (process.argv.length != 3) {
@@ -40,6 +49,7 @@ app.locals.pretty = true;
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
+// In Cloudant database
 
 // in-memory database
 players = {};
