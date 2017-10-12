@@ -16,14 +16,21 @@ cloudant.db.list(function(err, allDbs) {
     console.log('All my databases: %s', allDbs.join(', '))
 });
 var mobilebuzzerbd = cloudant.db.use('mobilebuzzer');
-mobilebuzzerbd.insert({ "score": 0 }, 'iphone5', function(err, body, header) {
-    if (err) {
-        return console.log('[mobilebuzzerdb.insert]', err.message);
-    }
-    console.log('iphone5 inserted');
-    console.log(body);
-})
 
+var callbackdb = function(err, data) {
+    if (err) {
+        return console.log('[mobilebuzzerdb]', err.message);
+    } else {
+        return console.log('[mobilebuzzerdb]', data);
+    }
+}
+
+var instertPlayer = function(name, cb) {
+    mobilebuzzerbd.insert({ "_in": name, "score": 0, "buzz": 0 }, cb);
+}
+
+insertPlayer("iphone5", callbackdb);
+insertPlayer("iphone7", callbackdb);
 
 // get the admin password
 if (process.argv.length != 3) {
@@ -58,6 +65,7 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 // In Cloudant database
+var initialize_playerDB = function(name) {}
 
 // in-memory database
 players = {};
