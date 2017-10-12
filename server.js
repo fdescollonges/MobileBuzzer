@@ -15,7 +15,7 @@ var cloudant = Cloudant({ account: me, password: password });
 cloudant.db.list(function(err, allDbs) {
     console.log('All my databases: %s', allDbs.join(', '))
 });
-var mobilebuzzerbd = cloudant.db.use('mobiledb');
+var mobilebuzzerbd = cloudant.db.use('mobilebuzzer');
 mobilebuzzerbd.insert({ "score": 0 }, 'iphone5', function(err, body, header) {
     if (err) {
         return console.log('[mobilebuzzerdb.insert]', err.message);
