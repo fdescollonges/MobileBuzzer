@@ -15,6 +15,14 @@ var cloudant = Cloudant({ account: me, password: password });
 cloudant.db.list(function(err, allDbs) {
     console.log('All my databases: %s', allDbs.join(', '))
 });
+var mobilebuzzerbd = cloudant.db.u('mobiledb');
+mobilebuzzerbd.insert({ "score": 0 }, 'iphone5', function(err, body, header) {
+    if (err) {
+        return console.log('[mobilebuzzerdb.insert]', err.message);
+    }
+    console.log('iphone5 inserted');
+    console.log(body);
+})
 
 
 // get the admin password
