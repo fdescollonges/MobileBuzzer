@@ -26,7 +26,7 @@ var callbackdb = function(err, data) {
 }
 
 var insertPlayer = function(name, cb) {
-    mobilebuzzerbd.insert({ "_in": name, "score": 0, "buzz": 0 }, cb);
+    mobilebuzzerbd.insert({ "_id": name, "score": 0, "buzz": 0 }, cb);
 }
 
 insertPlayer("iphone5", callbackdb);
